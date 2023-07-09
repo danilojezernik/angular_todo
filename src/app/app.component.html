@@ -3,54 +3,24 @@
   <div class="row">
     <div class="col">
       <div class="input-group mb-3">
-        <input type="text" class="form-control border-black rounded-0 p-3" placeholder="Todo" aria-label="Recipient's username" aria-describedby="button-addon2">
-        <button class="btn btn-dark" type="button" id="button-addon2">+</button>
+        <input type="text" class="form-control border-black rounded-0 p-3" placeholder="Todo"
+               aria-label="Recipient's username" aria-describedby="button-addon2" #newTask>
+        <button class="btn btn-dark" (click)="add(newTask.value)" type="button" id="button-addon2">+</button>
       </div>
     </div>
   </div>
 
   <table class="table table-dark table-striped">
     <tbody>
-    <tr>
-      <td>Danes moram narediti nalogo</td>
+    <tr *ngFor="let task of tasks">
+      <td>{{ task }}</td>
       <td class="text-end p-0">
-        <button type="button" class="btn btn-danger btn-sm rounded-0 p-2">Izbriši</button>
-        <button type="button" class="btn btn-success btn-sm rounded-0 p-2">Zakljčeno</button>
-      </td>
-    </tr>
-    <tr>
-      <td>Potrebuje zemljo iz kmetijske zadruge</td>
-      <td class="text-end p-0">
-        <button type="button" class="btn btn-danger btn-sm rounded-0 p-2">Izbriši</button>
-        <button type="button" class="btn btn-success btn-sm rounded-0 p-2">Zakljčeno</button>
-      </td>
-    </tr>
-    <tr>
-      <td>Danes moram narediti nalogo</td>
-      <td class="text-end p-0">
-        <button type="button" class="btn btn-danger btn-sm rounded-0 p-2">Izbriši</button>
-        <button type="button" class="btn btn-success btn-sm rounded-0 p-2">Zakljčeno</button>
-      </td>
-    </tr>
-    <tr>
-      <td>Danes moram narediti nalogo</td>
-      <td class="text-end p-0">
-        <button type="button" class="btn btn-danger btn-sm rounded-0 p-2">Izbriši</button>
-        <button type="button" class="btn btn-success btn-sm rounded-0 p-2">Zakljčeno</button>
-      </td>
-    </tr>
-    <tr>
-      <td>Potrebuje zemljo iz kmetijske zadruge</td>
-      <td class="text-end p-0">
-        <button type="button" class="btn btn-danger btn-sm rounded-0 p-2">Izbriši</button>
-        <button type="button" class="btn btn-success btn-sm rounded-0 p-2">Zakljčeno</button>
-      </td>
-    </tr>
-    <tr>
-      <td>Danes moram narediti nalogo</td>
-      <td class="text-end p-0">
-        <button type="button" class="btn btn-danger btn-sm rounded-0 p-2">Izbriši</button>
-        <button type="button" class="btn btn-success btn-sm rounded-0 p-2">Zakljčeno</button>
+        <button type="button" class="btn btn-danger btn-sm rounded-0 p-2" (click)="remove(task)">
+          <img [src]="delete" alt="filled-trash"/>
+        </button>
+        <button type="button" class="btn btn-success btn-sm rounded-0 p-2" (click)="marksAsDone(task)">
+          <img [src]="done" alt="filled-trash"/>
+        </button>
       </td>
     </tr>
     </tbody>

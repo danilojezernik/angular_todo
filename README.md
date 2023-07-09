@@ -69,3 +69,22 @@ Both of them work. Remember, the primary goal of one-way data binding is to **ke
 ### Here is one very important thing to know:
 
 The interpolation method only works with `string` data. If you need to bind other data types (like objects) you should use the property binding method `[src]="imageUrl"`.
+
+# Add bootstrap to Angular app
+
+Run command in your terminal `npm i bootstrap`
+
+Now open `angular.json` file and add the following:
+
+"projects" -> "todo-list" -> "architect" -> "build" -> "styles" and "scripts":
+
+```javascript
+"styles": [
+  "src/styles.css",
+  "./node_modules/bootstrap/dist/css/bootstrap.css"
+],
+"scripts": [
+  "./node_modules/jquery/dist/jquery.js",
+  "./node_modules/bootstrap/dist/js/bootstrap.js"
+]
+```

@@ -2,17 +2,26 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.3.
 
+## Create new project
+
+Run `ng new <project-name>` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `ng serve --open` or `ng serve --o` to open your default web browser to the application.
 
 ## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `ng generate component component-name` or `ng g c <component-name>` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Update
+
+Run `ng update` to checks your application for outdated dependencies, and can also update them.
 
 ## Running unit tests
 

@@ -6,7 +6,7 @@ import {Component} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title: string = 'todo-list';
+  title: string = 'ToDo made with Angular';
 
   delete: string = 'https://img.icons8.com/material-rounded/20/filled-trash.png'
   done: string = 'https://img.icons8.com/ios-filled/20/checkmark--v1.png'

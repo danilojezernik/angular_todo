@@ -43,7 +43,6 @@ export class AppComponent {
   }
 
   marksAsDone(task: Task): void {
-    alert('The task: "' + task.title + '" is done!')
     task.isDone = true;
   }
 

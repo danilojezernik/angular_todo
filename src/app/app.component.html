@@ -17,8 +17,8 @@
         <button type="button" class="btn btn-danger btn-sm rounded-0 p-2" (click)="remove(task)">
           <img [src]="delete" alt="filled-trash"/>
         </button>
-        <button type="button" class="btn btn-success btn-sm rounded-0 p-2" (click)="marksAsDone(task)">
-          <img [src]="done" alt="filled-trash"/>
+        <button type="button" class="btn btn-success btn-sm rounded-0 p-2" (click)="toggleIsDone(task)">
+          <img [src]="task.isDone?undo:done" alt="filled-trash"/>
         </button>
       </td>
     </tr>

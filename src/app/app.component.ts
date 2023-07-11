@@ -10,6 +10,7 @@ export class AppComponent {
 
   delete: string = 'https://img.icons8.com/material-rounded/20/filled-trash.png'
   done: string = 'https://img.icons8.com/ios-filled/20/checkmark--v1.png'
+  undo: string = 'https://img.icons8.com/ios-filled/20/undo.png'
 
   tasks: Task[] = [
     new Task('TEST 6'),
@@ -25,7 +26,7 @@ export class AppComponent {
 
     if (existingTask) {
       this.tasks.unshift(new Task('Ta naloga že obstaja'));
-      setTimeout(() => {
+      setTimeout((): void => {
         this.tasks.shift();
       }, 2000);
     } else {
@@ -42,8 +43,8 @@ export class AppComponent {
 
   }
 
-  marksAsDone(task: Task): void {
-    task.isDone = true;
+  toggleIsDone(task: Task): void {
+    task.isDone = !task.isDone
   }
 
 }
@@ -53,5 +54,5 @@ class Task {
   constructor(public title: string) {
   }
 
-  public isDone = false;
+  public isDone: boolean = false;
 }

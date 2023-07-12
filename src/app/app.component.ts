@@ -43,9 +43,6 @@ export class AppComponent {
 
   }
 
-  toggleIsDone(task: Task): void {
-    task.isDone = !task.isDone
-  }
 
 }
 
@@ -54,5 +51,8 @@ class Task {
   constructor(public title: string) {
   }
 
+  toggleIsDone(): void {
+    this.isDone = !this.isDone
+  }
   public isDone: boolean = false;
 }

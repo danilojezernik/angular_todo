@@ -1,0 +1,12 @@
+<div class="text-center d-flex justify-content-center">
+  <mat-calendar
+    style="width: 30%;"
+    [(selected)]="selectedDate"
+  ></mat-calendar>
+
+</div>
+
+<div class="text-center">
+  {{ selectedDate.toLocaleDateString() }}<br>
+  <a [routerLink]="['/tasks', {date:selectedDate}]">Tasks</a>
+</div>

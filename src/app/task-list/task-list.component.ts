@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Route} from "@angular/router";
 
 @Component({
   selector: 'app-task-list',
@@ -6,7 +7,17 @@ import {Component} from '@angular/core';
   styleUrls: ['./task-list.component.css']
 })
 
-export class TaskListComponent {
+export class TaskListComponent implements OnInit {
+
+  constructor(private route: ActivatedRoute) {
+  }
+
+  date: Date = new Date();
+
+  ngOnInit() {
+    this.date = new Date(this.route.snapshot.params['date']);
+  }
+
   delete: string = 'https://img.icons8.com/material-rounded/20/filled-trash.png'
   done: string = 'https://img.icons8.com/ios-filled/20/checkmark--v1.png'
   undo: string = 'https://img.icons8.com/ios-filled/20/undo.png'

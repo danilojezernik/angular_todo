@@ -1,7 +1,12 @@
-<div class="container" style="width: 50%;">
+<div class="container" style="width: 30%;">
 
   <div class="row">
     <div class="col">
+      <div class="input-group mb-3">
+        <input class="form-control border-black rounded-0 p-3" [matDatepicker]="picker" [value]="date">
+        <mat-datepicker-toggle [for]="picker" class="bg-black text-white p-1"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </div>
       <div class="input-group mb-3">
         <input type="text" class="form-control border-black rounded-0 p-3" placeholder="Todo" #newTask>
         <button class="btn btn-dark" (click)="add(newTask.value)" type="button" id="button-addon2">+</button>
@@ -12,12 +17,12 @@
   <table class="table table-dark shadow">
     <tbody>
     <tr *ngFor="let task of tasks; let i = index">
-      <td [class.text-decoration-line-through]="task.isDone">{{ task.title }}</td>
+      <td class="p-3" [class.text-decoration-line-through]="task.isDone">{{ task.title }}</td>
       <td class="text-end p-0">
-        <button type="button" class="btn btn-danger btn-sm rounded-0 p-2" (click)="remove(task)">
+        <button type="button" class="btn btn-danger btn-sm rounded-0 p-3" (click)="remove(task)">
           <img [src]="delete" alt="filled-trash"/>
         </button>
-        <button type="button" class="btn btn-success btn-sm rounded-0 p-2" (click)="task.toggleIsDone()">
+        <button type="button" class="btn btn-success btn-sm rounded-0 p-3" (click)="task.toggleIsDone()">
           <img [src]="task.isDone?undo:done" alt="filled-trash"/>
         </button>
       </td>

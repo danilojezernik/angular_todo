@@ -12,6 +12,8 @@ export class TaskListComponent implements OnInit {
   constructor(private route: ActivatedRoute) {
   }
 
+  newTaskTitle: string = ''
+
   date: Date = new Date();
 
   ngOnInit() {
@@ -31,8 +33,8 @@ export class TaskListComponent implements OnInit {
     new Task('TEST 1')
   ]
 
-  add(newTask: string): void {
-    const existingTask = this.tasks.find(task => task.title === newTask);
+  add(): void {
+    const existingTask = this.tasks.find(task => task.title === this.newTaskTitle);
 
     if (existingTask) {
       this.tasks.unshift(new Task('Ta naloga že obstaja'));
@@ -40,8 +42,9 @@ export class TaskListComponent implements OnInit {
         this.tasks.shift();
       }, 2000);
     } else {
-      this.tasks.unshift(new Task(newTask));
+      this.tasks.unshift(new Task(this.newTaskTitle));
     }
+    this.newTaskTitle = ''
   }
 
   remove(existingTask: Task): void {

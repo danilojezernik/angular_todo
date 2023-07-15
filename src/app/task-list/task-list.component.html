@@ -4,7 +4,7 @@
     <div class="col">
       <form (ngSubmit)="add(taskNgForm)" #taskNgForm='ngForm'>
         <div class="input-group mb-3">
-          <input name="date" class="form-control border-black rounded-0 p-3" [matDatepicker]="picker"
+          <input readonly name="date" class="form-control border-black rounded-0 p-3" [matDatepicker]="picker"
                  [(ngModel)]="date">
           <mat-datepicker-toggle [for]="picker" class="bg-black text-white p-1"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>

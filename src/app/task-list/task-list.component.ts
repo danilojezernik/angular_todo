@@ -44,6 +44,7 @@ export class TaskListComponent implements OnInit {
     if(taskNgForm.valid == false) {
       return;
     }
+
     if (existingTask) {
       this.tasks.unshift(new Task('Ta naloga že obstaja'));
       setTimeout((): void => {
@@ -52,7 +53,9 @@ export class TaskListComponent implements OnInit {
     } else {
       this.tasks.unshift(new Task(this.newTaskTitle));
     }
+
     taskNgForm.reset({date: this.date})
+
   }
 
   remove(existingTask: Task): void {

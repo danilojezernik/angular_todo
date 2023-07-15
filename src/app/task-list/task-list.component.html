@@ -10,10 +10,20 @@
           <mat-datepicker #picker></mat-datepicker>
         </div>
         <div class="input-group mb-3">
-          <input name="taskTitle" type="text" class="form-control border-black rounded-0 p-3" placeholder="Todo"
-                 [(ngModel)]="newTaskTitle" required>
+          <input #newTask="ngModel" name="taskTitle" type="text" class="form-control border-black rounded-0 p-3"
+                 placeholder="Todo"
+                 [(ngModel)]="newTaskTitle" required minlength="4">
           <button class="btn btn-dark">+</button>
         </div>
+        <div class="text-danger mb-3" *ngIf="newTask.invalid && ( newTask.touched || newTask.dirty )">
+          <div *ngIf="newTask.errors?.['required']">
+            Task title is required
+          </div>
+          <div *ngIf="newTask.errors?.['minlength']">
+            Task title must at least have 4 characters
+          </div>
+        </div>
+
       </form>
     </div>
   </div>

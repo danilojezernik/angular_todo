@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Route} from "@angular/router";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-task-list',
@@ -33,9 +34,16 @@ export class TaskListComponent implements OnInit {
     new Task('TEST 1')
   ]
 
-  add(): void {
+  add(taskNgForm: NgForm): void {
     const existingTask = this.tasks.find(task => task.title === this.newTaskTitle);
 
+    if(taskNgForm.touched == false) {
+      return;
+    }
+
+    if(taskNgForm.valid == false) {
+      return;
+    }
     if (existingTask) {
       this.tasks.unshift(new Task('Ta naloga že obstaja'));
       setTimeout((): void => {
@@ -44,7 +52,7 @@ export class TaskListComponent implements OnInit {
     } else {
       this.tasks.unshift(new Task(this.newTaskTitle));
     }
-    this.newTaskTitle = ''
+    taskNgForm.reset({date: this.date})
   }
 
   remove(existingTask: Task): void {

@@ -2,15 +2,19 @@
 
   <div class="row">
     <div class="col">
-      <div class="input-group mb-3">
-        <input class="form-control border-black rounded-0 p-3" [matDatepicker]="picker" [(ngModel)]="date">
-        <mat-datepicker-toggle [for]="picker" class="bg-black text-white p-1"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </div>
-      <div class="input-group mb-3">
-        <input type="text" class="form-control border-black rounded-0 p-3" placeholder="Todo" [(ngModel)]="newTaskTitle">
-        <button class="btn btn-dark" (click)="add()" type="button" id="button-addon2">+</button>
-      </div>
+      <form (ngSubmit)="add(taskNgForm)" #taskNgForm='ngForm'>
+        <div class="input-group mb-3">
+          <input name="date" class="form-control border-black rounded-0 p-3" [matDatepicker]="picker"
+                 [(ngModel)]="date">
+          <mat-datepicker-toggle [for]="picker" class="bg-black text-white p-1"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </div>
+        <div class="input-group mb-3">
+          <input name="taskTitle" type="text" class="form-control border-black rounded-0 p-3" placeholder="Todo"
+                 [(ngModel)]="newTaskTitle" required>
+          <button class="btn btn-dark">+</button>
+        </div>
+      </form>
     </div>
   </div>
 

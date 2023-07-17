@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Route} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {NgForm} from "@angular/forms";
+import {Task} from "./Task";
+import {NewTask} from "./NewTask";
 
 @Component({
   selector: 'app-task-list',
@@ -68,20 +70,3 @@ export class TaskListComponent implements OnInit {
 
 }
 
-class Task {
-
-  constructor(public title: string) {
-  }
-
-  toggleIsDone(): void {
-    this.isDone = !this.isDone
-  }
-
-  public isDone: boolean = false;
-
-}
-
-class NewTask {
-  constructor(public title: string = '', public date: Date = new Date()) {
-  }
-}

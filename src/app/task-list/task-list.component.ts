@@ -13,12 +13,11 @@ export class TaskListComponent implements OnInit {
   constructor(private route: ActivatedRoute) {
   }
 
-  newTaskTitle: string = ''
-
-  date: Date = new Date();
+  newTask: NewTask = new NewTask()
 
   ngOnInit() {
-    this.date = new Date(this.route.snapshot.params['date']);
+    let strDate = this.route.snapshot.params['date']
+    this.newTask = new NewTask(this.newTask.title, new Date(strDate))
   }
 
   delete: string = 'https://img.icons8.com/material-rounded/20/filled-trash.png'
@@ -35,13 +34,13 @@ export class TaskListComponent implements OnInit {
   ]
 
   add(taskNgForm: NgForm): void {
-    const existingTask = this.tasks.find(task => task.title === this.newTaskTitle);
+    const existingTask = this.tasks.find(task => task.title === this.newTask.title);
 
-    if(taskNgForm.touched == false) {
+    if (taskNgForm.touched == false) {
       return;
     }
 
-    if(taskNgForm.valid == false) {
+    if (taskNgForm.valid == false) {
       return;
     }
 
@@ -51,10 +50,10 @@ export class TaskListComponent implements OnInit {
         this.tasks.shift();
       }, 2000);
     } else {
-      this.tasks.unshift(new Task(this.newTaskTitle));
+      this.tasks.unshift(new Task(this.newTask.title));
     }
 
-    taskNgForm.reset({date: this.date})
+    taskNgForm.reset({date: this.newTask.date})
 
   }
 
@@ -80,4 +79,9 @@ class Task {
 
   public isDone: boolean = false;
 
+}
+
+class NewTask {
+  constructor(public title: string = '', public date: Date = new Date()) {
+  }
 }

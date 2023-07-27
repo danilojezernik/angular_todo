@@ -18,5 +18,5 @@ import { FormsModule } from "@angular/forms";
     TaskListComponent
   ]
 })
-export class TaskListModule {
+export class TasksModule {
 }

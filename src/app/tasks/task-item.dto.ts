@@ -1,4 +1,4 @@
-export class Task {
+export class TaskItem {
   constructor(
     public title: string) {
   }

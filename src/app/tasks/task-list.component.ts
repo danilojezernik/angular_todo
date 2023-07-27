@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {NgForm} from "@angular/forms";
-import {Task} from "./Task";
-import {NewTask} from "./NewTask";
+import {NewTask} from "./new-task.dto";
+import {TaskItem} from "./task-item.dto";
+import {TaskService} from "./task.service"
 
 @Component({
-  selector: 'app-task-list',
+  selector: 'app-tasks',
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css']
 })
@@ -14,6 +15,10 @@ export class TaskListComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) {
   }
+
+  taskService = new TaskService()
+
+  tasks = this.taskService.getAllTasks()
 
   newTask: NewTask = new NewTask()
 
@@ -26,14 +31,6 @@ export class TaskListComponent implements OnInit {
   done: string = 'https://img.icons8.com/ios-filled/20/checkmark--v1.png'
   undo: string = 'https://img.icons8.com/ios-filled/20/undo.png'
 
-  tasks: Task[] = [
-    new Task('TEST 6'),
-    new Task('TEST 5'),
-    new Task('TEST 4'),
-    new Task('TEST 3'),
-    new Task('TEST 2'),
-    new Task('TEST 1')
-  ]
 
   add(taskNgForm: NgForm): void {
     const existingTask = this.tasks.find(task => task.title === this.newTask.title);
@@ -47,23 +44,23 @@ export class TaskListComponent implements OnInit {
     }
 
     if (existingTask) {
-      this.tasks.unshift(new Task('Ta naloga že obstaja'));
+      this.taskService.addTaskExisting();
       setTimeout((): void => {
-        this.tasks.shift();
+        this.taskService.removeTask(existingTask)
       }, 2000);
     } else {
-      this.tasks.unshift(new Task(this.newTask.title));
+      this.taskService.addTask(this.newTask)
     }
 
     taskNgForm.reset({date: this.newTask.date})
 
   }
 
-  remove(existingTask: Task): void {
+  remove(existingTask: TaskItem): void {
     let userConfirmed: boolean = confirm(`Are you sure you want to remove the following task? \n "${existingTask.title}"`)
 
     if (userConfirmed) {
-      this.tasks = this.tasks.filter(task => task != existingTask)
+      this.taskService.removeTask(existingTask)
     }
 
   }

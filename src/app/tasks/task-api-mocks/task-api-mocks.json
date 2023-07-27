@@ -1,0 +1,79 @@
+{
+  "uuid": "6893f11a-0398-4d74-a12a-ffcfaf9bbce7",
+  "lastMigration": 28,
+  "name": "Task api mocks",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3001,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "3a721f9c-8f58-423f-a78f-35ac727f8c18",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "tasks",
+      "responses": [
+        {
+          "uuid": "66a952bb-f12c-4b7c-a5e6-7f8855ed79ba",
+          "body": "[\n  {\n    \"title\": \"TEST 6\"\n  },\n  {\n    \"title\": \"TEST 5\"\n  },\n  {\n    \"title\": \"TEST 4\"\n  },\n  {\n    \"title\": \"TEST 3\"\n  },\n  {\n    \"title\": \"TEST 2\"\n  },\n  {\n    \"title\": \"TEST 1\"\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "3a721f9c-8f58-423f-a78f-35ac727f8c18"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": []
+}

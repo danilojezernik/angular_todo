@@ -39,12 +39,9 @@ export class TaskListComponent implements OnInit {
     if (taskNgForm.valid == false) {
       return;
     }
-
     this.taskService.addTask(this.newTask)
 
-    this.tasks = this.taskService.getAllTasks()
     taskNgForm.reset({date: this.newTask.date})
-
   }
 
   remove(existingTask: TaskItem): void {
@@ -52,7 +49,6 @@ export class TaskListComponent implements OnInit {
 
     if (userConfirmed) {
       this.taskService.removeTask(existingTask)
-      this.tasks = this.taskService.getAllTasks()
     }
 
   }

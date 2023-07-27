@@ -30,7 +30,7 @@
 
   <table class="table table-dark shadow">
     <tbody>
-    <tr *ngFor="let task of tasks; let i = index">
+    <tr *ngFor="let task of tasks | async; let i = index">
       <td class="p-3" [class.text-decoration-line-through]="task.isDone">
         {{ task.title }}
       </td>

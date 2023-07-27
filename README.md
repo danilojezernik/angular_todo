@@ -78,7 +78,7 @@ Now open `angular.json` file and add the following:
 
 "projects" -> "todo-list" -> "architect" -> "build" -> "styles" and "scripts":
 
-```javascript
+```
 "styles": [
   "src/styles.css",
   "./node_modules/bootstrap/dist/css/bootstrap.css"
@@ -88,3 +88,9 @@ Now open `angular.json` file and add the following:
   "./node_modules/bootstrap/dist/js/bootstrap.js"
 ]
 ```
+
+# Download Mockoon
+
+Mockoon is the easiest and quickest way to run mock APIs locally. No remote deployment, no account required, open source.
+
+Check it out: [Mockoon](https://mockoon.com/)

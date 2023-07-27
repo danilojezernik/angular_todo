@@ -2,9 +2,9 @@ import {Injectable} from '@angular/core';
 import {TaskItem} from "./task-item.dto";
 import {NewTask} from "./new-task.dto";
 
-@Injectable({
-  providedIn: 'root'
-})
+// @Injectable({
+//   providedIn: 'root'
+// })
 export class TaskService {
 
   constructor() {
@@ -19,16 +19,16 @@ export class TaskService {
     new TaskItem('TEST 1')
   ]
 
-  getAllTasks(): TaskItem[] {
+  getAllTasks(): ReadonlyArray<TaskItem> {
     return this.tasks
   }
 
   addTask(newTask: NewTask) {
-    this.tasks.unshift(new TaskItem(newTask.title));
-  }
-
-  addTaskExisting() {
-    this.tasks.unshift(new TaskItem('Ta naloga že obstaja'));
+    // this.tasks.unshift(new TaskItem(newTask.title));
+    if(newTask.title === newTask.title) {
+      return;
+    }
+    this.tasks = this.tasks.concat(new TaskItem(newTask.title))
   }
 
   removeTask(existingTask: TaskItem) {

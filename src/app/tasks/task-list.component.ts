@@ -8,15 +8,13 @@ import {TaskService} from "./task.service"
 @Component({
   selector: 'app-tasks',
   templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.css']
+  styleUrls: ['./task-list.component.css'],
 })
 
 export class TaskListComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private taskService: TaskService) {
   }
-
-  taskService = new TaskService()
 
   tasks = this.taskService.getAllTasks()
 
@@ -33,7 +31,6 @@ export class TaskListComponent implements OnInit {
 
 
   add(taskNgForm: NgForm): void {
-    const existingTask = this.tasks.find(task => task.title === this.newTask.title);
 
     if (taskNgForm.touched == false) {
       return;
@@ -43,15 +40,9 @@ export class TaskListComponent implements OnInit {
       return;
     }
 
-    if (existingTask) {
-      this.taskService.addTaskExisting();
-      setTimeout((): void => {
-        this.taskService.removeTask(existingTask)
-      }, 2000);
-    } else {
-      this.taskService.addTask(this.newTask)
-    }
+    this.taskService.addTask(this.newTask)
 
+    this.tasks = this.taskService.getAllTasks()
     taskNgForm.reset({date: this.newTask.date})
 
   }
@@ -61,6 +52,7 @@ export class TaskListComponent implements OnInit {
 
     if (userConfirmed) {
       this.taskService.removeTask(existingTask)
+      this.tasks = this.taskService.getAllTasks()
     }
 
   }

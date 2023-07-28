@@ -1,6 +1,5 @@
 export class TaskItem {
-  constructor(
-    public title: string) {
+  constructor(public title: string) {
   }
   toggleIsDone(): void {
     this.isDone = !this.isDone

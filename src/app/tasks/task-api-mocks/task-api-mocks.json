@@ -17,7 +17,36 @@
       "responses": [
         {
           "uuid": "66a952bb-f12c-4b7c-a5e6-7f8855ed79ba",
-          "body": "[\n  {\n    \"title\": \"TEST 6\"\n  },\n  {\n    \"title\": \"TEST 5\"\n  },\n  {\n    \"title\": \"TEST 4\"\n  },\n  {\n    \"title\": \"TEST 3\"\n  },\n  {\n    \"title\": \"TEST 2\"\n  },\n  {\n    \"title\": \"TEST 1\"\n  }\n]",
+          "body": "[\n  {\n    \"title\": \"TEST 7\"\n  },\n  {\n    \"title\": \"TEST 6\"\n  },\n  {\n    \"title\": \"TEST 5\"\n  },\n  {\n    \"title\": \"TEST 4\"\n  },\n  {\n    \"title\": \"TEST 3\"\n  },\n  {\n    \"title\": \"TEST 2\"\n  },\n  {\n    \"title\": \"TEST 1\"\n  },\n  {\n    \"title\": \"TEST 0\"\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "d582d56d-dbc3-4374-9145-8463fc0495e2",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "tasks",
+      "responses": [
+        {
+          "uuid": "fb3afc96-34a6-43ce-9bf4-7dfbf63174aa",
+          "body": "{}",
           "latency": 0,
           "statusCode": 200,
           "label": "",
@@ -42,6 +71,10 @@
     {
       "type": "route",
       "uuid": "3a721f9c-8f58-423f-a78f-35ac727f8c18"
+    },
+    {
+      "type": "route",
+      "uuid": "d582d56d-dbc3-4374-9145-8463fc0495e2"
     }
   ],
   "proxyMode": false,
@@ -61,6 +94,18 @@
     {
       "key": "Content-Type",
       "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
     }
   ],
   "proxyReqHeaders": [

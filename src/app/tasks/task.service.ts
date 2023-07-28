@@ -4,25 +4,16 @@ import {NewTask} from "./new-task.dto";
 import {Observable, BehaviorSubject} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 
-// @Injectable({
-//   providedIn: 'root'
-// })
+@Injectable()
 export class TaskService {
 
   constructor(private httpClient: HttpClient) {
   }
 
-  private tasks = new BehaviorSubject([
-    new TaskItem('TEST 6'),
-    new TaskItem('TEST 5'),
-    new TaskItem('TEST 4'),
-    new TaskItem('TEST 3'),
-    new TaskItem('TEST 2'),
-    new TaskItem('TEST 1')
-  ])
+  private tasks = new BehaviorSubject<TaskItem[]>([])
 
   getAllTasks(): Observable<TaskItem[]> {
-    return this.tasks;
+    return this.httpClient.get<TaskItem[]>('http://localhost:3001/tasks');
   }
 
   addTask(newTask: NewTask) {

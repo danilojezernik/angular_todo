@@ -13,7 +13,7 @@
       "type": "http",
       "documentation": "",
       "method": "get",
-      "endpoint": "tasks",
+      "endpoint": "tasks/:date",
       "responses": [
         {
           "uuid": "66a952bb-f12c-4b7c-a5e6-7f8855ed79ba",
@@ -42,10 +42,39 @@
       "type": "http",
       "documentation": "",
       "method": "post",
-      "endpoint": "tasks",
+      "endpoint": "tasks/:date",
       "responses": [
         {
           "uuid": "fb3afc96-34a6-43ce-9bf4-7dfbf63174aa",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "f5c12229-7deb-4a22-9927-1a101e98ca98",
+      "type": "http",
+      "documentation": "",
+      "method": "delete",
+      "endpoint": "tasks/:date/:title",
+      "responses": [
+        {
+          "uuid": "eba7bd8b-589f-4e92-b999-520849e69a20",
           "body": "{}",
           "latency": 0,
           "statusCode": 200,
@@ -75,6 +104,10 @@
     {
       "type": "route",
       "uuid": "d582d56d-dbc3-4374-9145-8463fc0495e2"
+    },
+    {
+      "type": "route",
+      "uuid": "f5c12229-7deb-4a22-9927-1a101e98ca98"
     }
   ],
   "proxyMode": false,

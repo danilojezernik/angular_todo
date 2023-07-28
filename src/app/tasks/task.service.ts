@@ -1,8 +1,10 @@
 import {Injectable} from '@angular/core';
 import {TaskItem} from "./task-item.dto";
 import {NewTask} from "./new-task.dto";
-import {Observable, BehaviorSubject, tap, map} from "rxjs";
+import {Observable, BehaviorSubject, map} from "rxjs";
 import {HttpClient} from "@angular/common/http";
+
+const resourceURL = 'http://localhost:3001/tasks'
 
 @Injectable()
 export class TaskService {
@@ -12,11 +14,9 @@ export class TaskService {
 
   private tasks = new BehaviorSubject<TaskItem[]>([])
 
-  getAllTasks(): Observable<TaskItem[]> {
-    this.httpClient.get<TaskItem[]>('http://localhost:3001/tasks')
-      .pipe(tap(console.log))
+  getAllTasks(date: Date): Observable<TaskItem[]> {
+    this.httpClient.get<TaskItem[]>(`${resourceURL}/${date}`)
       .pipe(map(TaskService.mapTaskItems))
-      .pipe(tap(console.log))
       .subscribe(t => this.tasks.next(t))
 
     return this.tasks
@@ -27,17 +27,19 @@ export class TaskService {
     return items.map(item => new TaskItem(item.title))
   }
 
-  addTask(newTask: NewTask) {
+  addTask(date: Date, newTask: NewTask) {
     let updatedTasks = this.tasks.value.concat(new TaskItem(newTask.title))
 
-    this.httpClient.post('http://localhost:3001/tasks', newTask)
+    this.httpClient.post(`${resourceURL}/${newTask.date}`, newTask)
       .subscribe(() => this.tasks.next(updatedTasks))
-
   }
 
-  removeTask(existingTask: TaskItem) {
+  removeTask(date: Date, existingTask: TaskItem) {
     let updatedTasks = this.tasks.value.filter(task => task != existingTask);
-    this.tasks.next(updatedTasks)
+
+    this.httpClient.delete(`${resourceURL}/${date}/${existingTask.title}`)
+      .subscribe(() => this.tasks.next(updatedTasks))
+
   }
 
 }

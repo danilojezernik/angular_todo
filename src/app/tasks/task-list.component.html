@@ -11,8 +11,7 @@
         </div>
         <div class="input-group mb-3">
           <input #newTaskNgModel="ngModel" name="taskTitle" type="text" class="form-control border-black rounded-0 p-3"
-                 placeholder="Todo"
-                 [(ngModel)]="newTask.title" required minlength="4">
+                 placeholder="Todo" [(ngModel)]="newTask.title" required minlength="4">
           <button [disabled]="!form.checkValidity()" class="btn btn-success rounded-0">Add</button>
         </div>
         <div class="text-danger mb-3" *ngIf="newTaskNgModel.invalid && ( newTaskNgModel.touched || newTaskNgModel.dirty )">
@@ -27,23 +26,5 @@
       </form>
     </div>
   </div>
-
-  <table class="table table-dark shadow">
-    <tbody>
-    <tr *ngFor="let task of tasks | async; let i = index">
-      <td class="p-3" [class.text-decoration-line-through]="task.isDone">
-        {{ task.title }}
-      </td>
-      <td class="text-end p-0">
-        <button type="button" class="btn btn-danger btn-sm rounded-0 p-3" (click)="remove(task)">
-          <img [src]="delete" alt="filled-trash"/>
-        </button>
-        <button type="button" class="btn btn-success btn-sm rounded-0 p-3" (click)="task.toggleIsDone()">
-          <img [src]="task.isDone?undo:done" alt="filled-trash"/>
-        </button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-
+  <task-table [tasks]="(tasks | async) ?? []" ></task-table>
 </div>

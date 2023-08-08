@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-calendar',
@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent {
+
+  ngOnInit(): void {
+  }
+
   selectedDate: Date = new Date();
 }

@@ -9,37 +9,36 @@ const resourceURL = 'http://localhost:3001/tasks'
 @Injectable()
 export class TaskService {
 
-  constructor(private httpClient: HttpClient) {
-  }
+    constructor(private httpClient: HttpClient) {
+    }
 
-  private tasks = new BehaviorSubject<TaskItem[]>([])
+    private tasks = new BehaviorSubject<TaskItem[]>([])
 
-  getAllTasks(date: Date): Observable<TaskItem[]> {
-    this.httpClient.get<TaskItem[]>(`${resourceURL}/${date}`)
-      .pipe(map(TaskService.mapTaskItems))
-      .subscribe(t => this.tasks.next(t))
+    getAllTasks(date: Date): Observable<TaskItem[]> {
+        this.httpClient.get<TaskItem[]>(`${resourceURL}/${date}`)
+            .pipe(map(TaskService.mapTaskItems))
+            .subscribe(t => this.tasks.next(t))
+        return this.tasks
 
-    return this.tasks
+    }
 
-  }
+    private static mapTaskItems(items: { title: string }[]) {
+        return items.map(item => new TaskItem(item.title))
+    }
 
-  private static mapTaskItems(items: { title: string }[]) {
-    return items.map(item => new TaskItem(item.title))
-  }
+    addTask(date: Date, newTask: NewTask) {
+        let updatedTasks = this.tasks.value.concat(new TaskItem(newTask.title))
 
-  addTask(date: Date, newTask: NewTask) {
-    let updatedTasks = this.tasks.value.concat(new TaskItem(newTask.title))
+        this.httpClient.post(`${resourceURL}/${newTask.date}`, newTask)
+            .subscribe(() => this.tasks.next(updatedTasks))
+    }
 
-    this.httpClient.post(`${resourceURL}/${newTask.date}`, newTask)
-      .subscribe(() => this.tasks.next(updatedTasks))
-  }
+    removeTask(date: Date, existingTask: TaskItem) {
+        let updatedTasks = this.tasks.value.filter(task => task != existingTask);
 
-  removeTask(date: Date, existingTask: TaskItem) {
-    let updatedTasks = this.tasks.value.filter(task => task != existingTask);
+        this.httpClient.delete(`${resourceURL}/${date}/${existingTask.title}`)
+            .subscribe(() => this.tasks.next(updatedTasks))
 
-    this.httpClient.delete(`${resourceURL}/${date}/${existingTask.title}`)
-      .subscribe(() => this.tasks.next(updatedTasks))
-
-  }
+    }
 
 }

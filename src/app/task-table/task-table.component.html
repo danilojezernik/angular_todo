@@ -1,0 +1,17 @@
+<table class="table table-dark shadow">
+    <tbody>
+    <tr *ngFor="let task of tasks; let i = index">
+        <td class="p-3" [class.text-decoration-line-through]="task.isDone">
+            {{ task.title }}
+        </td>
+        <td class="text-end p-0">
+            <button type="button" class="btn btn-danger btn-sm rounded-0 p-3" (click)="remove(task)">
+                <img [src]="delete" alt="filled-trash"/>
+            </button>
+            <button type="button" class="btn btn-success btn-sm rounded-0 p-3" (click)="task.toggleIsDone()">
+                <img [src]="task.isDone?undo:done" alt="filled-trash"/>
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
